@@ -39,7 +39,7 @@ class Game{
         car4 = createSprite(700,200);
         car4.addImage("image4", car4Img);
 
-        cars = [car1, car2];
+        cars = [car1, car2, car3, car4];
     }
 
     play(){
