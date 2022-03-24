@@ -2,7 +2,7 @@ var database, gameState = 0, playerCount, allPlayers, distance = 0;
 var form, player, game;
 var car1, car2, car3, car4, cars;
 var car1Img, car2Img, car3Img, car4Img;
-var groundImg, trackImg;
+var groundImg, trackImg, trackImg2;
 
 function preload(){
 trackImg = loadImage("images/track.jpg");
@@ -12,10 +12,13 @@ car1Img = loadImage("images/car1.png");
 car2Img = loadImage("images/car2.png");
 car3Img = loadImage("images/car3.png");
 car4Img = loadImage("images/car4.png");
+
+trackImg2 = loadImage("assets/planodefundo.png");
 }
 
 function setup(){
     database = firebase.database();
+    //reset()
     game = new Game();
     game.getState();
     game.start();
@@ -25,7 +28,7 @@ function setup(){
 }
 
 function draw(){
-    background("white");
+    background ("#c68767");
 
     if(playerCount === 4){
         game.update(1);
@@ -41,6 +44,13 @@ function draw(){
     }
 
     drawSprites();
+}
+
+function reset (){
+database.ref ("/").update ({
+    playerCount: 0, gameState: 0
+})
+
 }
 
 

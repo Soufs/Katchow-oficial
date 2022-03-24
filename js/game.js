@@ -47,7 +47,7 @@ class Game{
         Player.getPlayerInfo();
 
         if(allPlayers !== undefined){
-           background ("#c68767");
+           background ("#c68767");    
            image(trackImg, 0, -displayHeight * 4, displayWidth, displayHeight* 5);
            var index = 0;
            var x = 175;
@@ -60,11 +60,16 @@ class Game{
                 cars[index -1].y = y;
 
                 if(index === player.index){
+                    stroke(10);
+                    fill("red");
+                    ellipse(x, y, 60, 60);
                     cars[index -1].shapeColor = "red";
                     camera.position.x = displayWidth/2;
                     camera.position.y = cars[index -1].y;
                 }
             }
+            
+            drawSprites();
         }
 
         if(keyIsDown(UP_ARROW) && player.index !== null){
@@ -75,8 +80,6 @@ class Game{
         if(player.distance > 3860){
             gameState = 2;
         }
-
-        drawSprites();
     }
 
     end(){

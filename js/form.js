@@ -3,6 +3,7 @@ class Form{
     this.input = createInput("Nome");
     this.button = createButton("play");
     this.mensagem = createElement('h3');
+    this.reset = createButton('reset');
   }
  
   apagar(){
@@ -11,14 +12,28 @@ class Form{
     this.input.hide();
   }
 
+  elementsPosition(){
+    this.input.position(width/2 - 110, height/2 - 80);
+    this.button.position(width/2 - 90, height/2 - 20);
+    this.mensagem.position(width/2 - 300, height/2 - 100);
+    this.reset.position(displayWidth -100, 20);
+    }
+
+  elementsStyle(){
+    this.input.class("customInput");
+    this.button.class("customButton");
+    this.mensagem.class("greeting");
+    this.reset.class("customButton");
+  }
+
   display(){
 
-      var title = createElement('h1');
-      title.html("Jogo Katchow");
-      title.position(displayWidth/2,0);
-
-      this.input.position(displayWidth/2 -40, displayHeight/2 -80);
-      this.button.position(displayWidth/2 +30, displayHeight/2);
+      var title = createImg("./assets/TITULO.png");
+      title.class("gameTitle");
+      title.position(120, 50);
+      
+      this.elementsPosition();
+      this.elementsStyle();
 
       this.button.mousePressed(()=>{
           this.input.hide();
@@ -31,8 +46,15 @@ class Form{
           player.update();
           player.updateCount(playerCount);
 
-          this.mensagem.html("Hello " + player.name);
-          this.mensagem.position(displayWidth/2 -70, displayHeight/4);
+          var msg = `olá ,${this.input.value()}</br> espere os outros jogadores entrarem`;
+          this.mensagem.html(msg);
+      });
+
+      this.reset.mousePressed(()=>{
+          player.updateCount(0);
+          game.update(0);
+          
+
       })
   }
 }
