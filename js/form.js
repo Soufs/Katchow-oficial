@@ -46,15 +46,13 @@ class Form{
           player.update();
           player.updateCount(playerCount);
 
-          var msg = `olá ,${this.input.value()}</br> espere os outros jogadores entrarem`;
+          var msg = `olá, ${this.input.value()}</br> espere os outros jogadores entrarem`;
           this.mensagem.html(msg);
       });
 
       this.reset.mousePressed(()=>{
-          player.updateCount(0);
-          game.update(0);
-          
-
+        game.reset();
+        window.location.reload();
       })
   }
 }

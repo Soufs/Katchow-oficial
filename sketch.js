@@ -46,11 +46,5 @@ function draw(){
     drawSprites();
 }
 
-function reset (){
-database.ref ("/").update ({
-    playerCount: 0, gameState: 0
-})
-
-}
 
 

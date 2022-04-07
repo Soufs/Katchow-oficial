@@ -46,6 +46,8 @@ class Game{
         form.apagar();
         Player.getPlayerInfo();
 
+        player.getCarsAtEnd();
+
         if(allPlayers !== undefined){
            background ("#c68767");    
            image(trackImg, 0, -displayHeight * 4, displayWidth, displayHeight* 5);
@@ -79,11 +81,30 @@ class Game{
         
         if(player.distance > 3860){
             gameState = 2;
+            player.rank = player.rank +1;
+            Player.updateCarsAtEnd(player.rank);
+            this.showRanking();
         }
     }
 
     end(){
       console.log("Fim de Jogo");
+      console.log(player.rank);
     } 
 
+    reset(){
+      database.ref ("/").update ({
+      playerCount: 0, gameState: 0, players: {}, carsAtEnd: 0
+    })
+    }
+
+    showRanking(){
+        swal({
+            title: `incrível! ${"\n"} ${player.rank}º lugar!`,
+            text: "você alcançou a linha de chegada!",
+            imageUrl: "https://raw.githubusercontent.com/vishalgaddam873/p5-multiplayer-car-race-game/master/assets/cup.png",
+            imageSize: "100x100",
+            confirmButtonText: "Okay!"
+        })
+    }
 }
